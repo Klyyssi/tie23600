@@ -29,12 +29,11 @@ GET /api/v1/search?by_lyrics=punk rocker
 {
   [
     song: "Sheena is a punk rocker",
-    artist: "Ramones",
+    artists: ["Ramones"],
     lyrics: "Well the kids are all hopped up and ready to go...",
     spotify-track-uri: "spotify:track:2UnY8ApZT4roi66n1LDAil",
     spotify-song-link: "https://open.spotify.com/track/2UnY8ApZT4roi66n1LDAil",
-    images: [..., ...],
-    genre: ["punk", "rock"]
+    images: [..., ...]
   ],
   [
     ...
