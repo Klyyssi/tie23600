@@ -100,8 +100,8 @@ class Song extends Component {
   }
 
   render() {
-    const lyrics = this.props.song.lyrics.split("\n").map(line => {
-      return <LyricsLine line={line} />
+    const lyrics = this.props.song.lyrics.split("\n").map((line, i) => {
+      return <LyricsLine key={i} line={line} />
     });
 
     return (
