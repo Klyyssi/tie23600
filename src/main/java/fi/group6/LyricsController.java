@@ -39,13 +39,9 @@ public class LyricsController {
     public ResponseEntity<?> search(@RequestParam(value="by_lyrics") String lyrics) {
 		String url = chartLyricsEndPoint + "/SearchLyricText?lyricText={lyricText}";
 		LyricTrackResponse[] responses = restTemplate.getForObject(url, LyricTrackResponse[].class, lyrics);
-		List<LyricTrackResponse> responsesList = Arrays.asList(responses);
+		List<LyricTrackResponse> responsesList = Arrays.asList(responses).subList(0, trackLimit);
 
-		if (responsesList.size() > trackLimit) {
-			return ResponseEntity.status(403).body("Too many results.");
-		}
-
-		List<SearchResponse> searchResponses = new ArrayList<SearchResponse>();
+		List<SearchResponse> searchResponses = new ArrayList<>();
 		for (LyricTrackResponse lyricTrackResponse : responsesList) {
 			if (lyricTrackResponse.LyricChecksum != null) {
 				GetLyricResponse lyricResponse = getLyric(lyricTrackResponse.LyricId, lyricTrackResponse.LyricChecksum);
