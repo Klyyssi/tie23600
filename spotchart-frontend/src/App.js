@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import {PanelGroup, Panel} from 'react-bootstrap';
-import {songList} from './mock.js';
-//import logo from './logo.svg';
+// import {songList} from './mock.js';
+import {apiURI} from './config.js';
+var jquery = require('jquery');
 
 class App extends Component {
   constructor(props) {
@@ -12,9 +13,19 @@ class App extends Component {
   }
 
   searchSongs(searchParam) {
-    console.log("Searching songs with parameter " + searchParam);
-    this.setState({songList: songList});
-    
+    jquery.ajax({
+      url: apiURI + '/search',
+      type: 'GET',
+      dataType: 'json',
+      data: {'by_lyrics': searchParam},
+      cache: false,
+      success: function(data) {
+        this.setState({ songList: data });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(apiURI + '/search', status, err.toString());
+      }
+    });
   }
 
   render() {
@@ -61,8 +72,8 @@ class SongList extends Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
-  formatSongName(artist, song) {
-    return artist + " - " + song;
+  formatSongName(artists, song) {
+    return artists.join(", ") + " - " + song;
   }
 
   handleSelect(activeKey) {
@@ -72,7 +83,7 @@ class SongList extends Component {
   render() {
     const activekey = this.state.activeKey;
     const songs = this.props.songs.map((song, i) => {
-      return <Panel key={i} header={this.formatSongName(song.artist, song.song)} eventKey={i+1+""}><Song song={song} /></Panel>
+      return <Panel key={i} header={this.formatSongName(song.artists, song.song)} eventKey={i+1+""}><Song song={song} /></Panel>
     });
 
     return (
@@ -84,13 +95,33 @@ class SongList extends Component {
 }
 
 class Song extends Component {
+  formatEmbedURI() {
+    return "https://embed.spotify.com/?uri=" + this.props.song['spotify-track-uri'];
+  }
+
   render() {
+    const lyrics = this.props.song.lyrics.split("\n").map(line => {
+      return <LyricsLine line={line} />
+    });
+
     return (
       <div>
+        <h2>Spotify</h2>
+        <iframe src={this.formatEmbedURI()} height="80" frameBorder="0" allowTransparency="true"></iframe>
+        <a className="block" href={this.props.song['spotify-song-link']}>{this.props.song['spotify-song-link']}</a>
+        <h2>Lyrics</h2>
         <blockquote>
-          <p>{this.props.song.lyrics}</p>
+          <p>{lyrics}</p>
         </blockquote>
       </div>
+    )
+  }
+}
+
+class LyricsLine extends Component {
+  render() {
+    return (
+      <div>{this.props.line}<br /></div>
     )
   }
 }
