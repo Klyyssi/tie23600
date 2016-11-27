@@ -8,7 +8,7 @@ var jquery = require('jquery');
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {songList: []};
+    this.state = {songList: [], errorMessage: ""};
     this.searchSongs = this.searchSongs.bind(this);
   }
 
@@ -20,11 +20,11 @@ class App extends Component {
       data: {'by_lyrics': searchParam},
       cache: false,
       success: function(data) {
-        this.setState({ songList: data });
+        this.setState({ songList: data, errorMessage: "" });
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error(apiURI + '/search', status, err.toString());
-      }
+        this.setState({ songList: [], errorMessage: status.toString() + ": " + err.toString() });
+      }.bind(this)
     });
   }
 
@@ -32,9 +32,21 @@ class App extends Component {
     return (
       <div>
         <SearchBar searchCallback={this.searchSongs} />
+        <ErrorMessage msg={this.state.errorMessage} />
         <SongList songs={this.state.songList} />
       </div>
     );
+  }
+}
+
+class ErrorMessage extends Component {
+
+  render() {
+    const message = this.props.msg !== "" ? "Something went wrong" : "";
+    
+    return (
+      <p className="bg-danger">{message}</p>
+    )
   }
 }
 
