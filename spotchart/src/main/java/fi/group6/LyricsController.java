@@ -39,7 +39,7 @@ public class LyricsController {
     public ResponseEntity<?> search(@RequestParam(value="by_lyrics") String lyrics) {
 		String url = chartLyricsEndPoint + "/SearchLyricText?lyricText={lyricText}";
 		LyricTrackResponse[] responses = restTemplate.getForObject(url, LyricTrackResponse[].class, lyrics);
-		List<LyricTrackResponse> responsesList = Arrays.asList(responses).subList(0, trackLimit);
+		List<LyricTrackResponse> responsesList = Arrays.asList(responses).subList(0, Math.min(trackLimit, responses.length));
 
 		List<SearchResponse> searchResponses = new ArrayList<>();
 		for (LyricTrackResponse lyricTrackResponse : responsesList) {
