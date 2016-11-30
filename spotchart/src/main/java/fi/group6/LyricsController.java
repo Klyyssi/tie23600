@@ -34,12 +34,22 @@ public class LyricsController {
 		this.restTemplate = new RestTemplate();
 		restTemplate.getMessageConverters().add(new MappingJackson2XmlHttpMessageConverter());
 	}
+        
+        @RequestMapping(value = "/search", params = {"artist", "song"})
+        public ResponseEntity<?> searchByArtistAndSong(@RequestParam(required = true) String artist, @RequestParam(required = true) String song) {
+            String url = chartLyricsEndPoint + "/SearchLyric?artist={artist}&song={song}";
+            return findLyricsAndSpotifyMetadata(url, artist, song);
+        }
 	
-	@RequestMapping("/search")
-    public ResponseEntity<?> search(@RequestParam(value="by_lyrics") String lyrics) {
+	@RequestMapping(value = "/search", params = {"lyrics"})
+        public ResponseEntity<?> searchByLyrics(@RequestParam String lyrics) {
 		String url = chartLyricsEndPoint + "/SearchLyricText?lyricText={lyricText}";
-		LyricTrackResponse[] responses = restTemplate.getForObject(url, LyricTrackResponse[].class, lyrics);
-		List<LyricTrackResponse> responsesList = Arrays.asList(responses).subList(0, Math.min(trackLimit, responses.length));
+		return findLyricsAndSpotifyMetadata(url, lyrics);
+	}
+        
+        private ResponseEntity<?> findLyricsAndSpotifyMetadata(String endpointURL, Object... urlVariables) {
+		LyricTrackResponse[] responses = restTemplate.getForObject(endpointURL, LyricTrackResponse[].class, urlVariables);
+                List<LyricTrackResponse> responsesList = Arrays.asList(responses).subList(0, Math.min(trackLimit, responses.length));
 
 		List<SearchResponse> searchResponses = new ArrayList<>();
 		for (LyricTrackResponse lyricTrackResponse : responsesList) {
@@ -52,7 +62,7 @@ public class LyricsController {
 			}
 		}
 		return new ResponseEntity<List<SearchResponse>>(searchResponses, HttpStatus.OK);
-	}
+        }
 	
 	private SearchResponse createSearchResponse(Track track, GetLyricResponse lyricResponse) {
 		SearchResponse searchResponse = new SearchResponse();
