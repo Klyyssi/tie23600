@@ -41,6 +41,36 @@ GET /api/v1/search?by_lyrics=punk rocker
 }
 ```
 
+## Asentaminen
+
+### Kehitysympäristö
+
+#### Frontend-build ilman olemassaolevaa node-asennusta
+```
+cd spotchart
+./mvnw install -Pprod
+```
+
+#### Frontend-build
+```
+cd spotchart-frontend
+npm install
+npm run copyToSpring
+```
+
+#### Frontend-kehitys käyttäen Springiä
+```
+npm run devSpring
+```
+
+### Heroku
+
+Aseta seuraavat config-muuttujat
+
+| Muuttuja          | Arvo                 |
+| ----------------- | -------------------- |
+| MAVEN_CUSTOM_OPTS | -Pprod -DskipTests   |
+
 ## Ryhmä
 Sampo Tolvanen <br />
 Markus Mulkahainen
