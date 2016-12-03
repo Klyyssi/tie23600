@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -35,13 +36,13 @@ public class LyricsController {
 		restTemplate.getMessageConverters().add(new MappingJackson2XmlHttpMessageConverter());
 	}
         
-        @RequestMapping(value = "/search", params = {"artist", "song"})
+        @RequestMapping(value = "/search", params = {"artist", "song"}, method = RequestMethod.GET)
         public ResponseEntity<?> searchByArtistAndSong(@RequestParam(required = true) String artist, @RequestParam(required = true) String song) {
             String url = chartLyricsEndPoint + "/SearchLyric?artist={artist}&song={song}";
             return findLyricsAndSpotifyMetadata(url, artist, song);
         }
 	
-	@RequestMapping(value = "/search", params = {"lyrics"})
+	@RequestMapping(value = "/search", params = {"lyrics"}, method = RequestMethod.GET)
         public ResponseEntity<?> searchByLyrics(@RequestParam String lyrics) {
 		String url = chartLyricsEndPoint + "/SearchLyricText?lyricText={lyricText}";
 		return findLyricsAndSpotifyMetadata(url, lyrics);
