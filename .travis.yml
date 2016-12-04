@@ -1,0 +1,8 @@
+language: java
+jdk:
+  oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: "De51z/cj6Mzsl930o+DToQVjYZif0ukledJqwIqmy3kvW2/txjBrETdgyfgVvNB9dm9QLpgmYA+sFWJSOCuHNA2ADIs5o/8UPDJZFAsgKRK4RIdHwbiv0iI0vjRmWvgcI/5EZ/LDrrQ3DqHGwVEE4TPPX8Pi38AMf8dbUY456zdQHMP9+rGuNsLgRxO2Kf7RmRayA8PyiprFCXNu9H/3ydZRM1WTwztvjblN8Zyctj/ZQ3hDY2JMiXNeTH1/8yjhWbr+jf9QWAwZ5Fdqq7nEW06OvCDQilQtggzHCKPuhok+y4TGHhoJ821Gucte5HKN2ioLm5Ivurz+nwSFby/CbnfZcykGowsyI/shfMDbtkjptDO+vSWrz1EoJDAIamQQzfa/DW9o+XWc+35vL+ZyOZf1+2SSM1ukvm84a82EMlv3KK4AXGO9res9WXPsdd1smY9i58UK6V6fmaueICiVyHQ96FOg+2xf+LsWTpf4cD4sNXb7D1+znoFbWzxP+2L9mXZCYRp+vhFQGBOhOoi2986IV2IDSlt7vhlcdCuTD0WjHyOjaDNWhMrfPXm++7TGzTaHlJClAYYXiY98qEU9NI8mMqJZ1gqXfMToy+699BcrzXtEbB3J3+FNm8J5HmjEobE++dhC97jd85a/7ywg+52t2DrZAmXK8UMluL9I9b0="
+  app: spotchart
