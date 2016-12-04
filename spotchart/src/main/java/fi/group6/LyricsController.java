@@ -36,19 +36,19 @@ public class LyricsController {
 		restTemplate.getMessageConverters().add(new MappingJackson2XmlHttpMessageConverter());
 	}
         
-        @RequestMapping(value = "/search", params = {"artist", "song"}, method = RequestMethod.GET)
-        public ResponseEntity<?> searchByArtistAndSong(@RequestParam(required = true) String artist, @RequestParam(required = true) String song) {
-            String url = chartLyricsEndPoint + "/SearchLyric?artist={artist}&song={song}";
-            return findLyricsAndSpotifyMetadata(url, artist, song);
-        }
+	@RequestMapping(value = "/search", params = {"artist", "song"}, method = RequestMethod.GET)
+	public ResponseEntity<?> searchByArtistAndSong(@RequestParam(required = true) String artist, @RequestParam(required = true) String song) {
+		String url = chartLyricsEndPoint + "/SearchLyric?artist={artist}&song={song}";
+		return findLyricsAndSpotifyMetadata(url, artist, song);
+	}
 	
-	@RequestMapping(value = "/search", params = {"lyrics"}, method = RequestMethod.GET)
+	@RequestMapping(value = "/searchLyric", params = {"lyrics"}, method = RequestMethod.GET)
         public ResponseEntity<?> searchByLyrics(@RequestParam String lyrics) {
 		String url = chartLyricsEndPoint + "/SearchLyricText?lyricText={lyricText}";
 		return findLyricsAndSpotifyMetadata(url, lyrics);
 	}
         
-        private ResponseEntity<?> findLyricsAndSpotifyMetadata(String endpointURL, Object... urlVariables) {
+	private ResponseEntity<?> findLyricsAndSpotifyMetadata(String endpointURL, Object... urlVariables) {
 		LyricTrackResponse[] responses = restTemplate.getForObject(endpointURL, LyricTrackResponse[].class, urlVariables);
                 List<LyricTrackResponse> responsesList = Arrays.asList(responses).subList(0, Math.min(trackLimit, responses.length));
 
@@ -63,7 +63,7 @@ public class LyricsController {
 			}
 		}
 		return new ResponseEntity<List<SearchResponse>>(searchResponses, HttpStatus.OK);
-        }
+	}
 	
 	private SearchResponse createSearchResponse(Track track, GetLyricResponse lyricResponse) {
 		SearchResponse searchResponse = new SearchResponse();

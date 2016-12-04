@@ -34,7 +34,7 @@ class App extends Component {
 
   searchSongs(searchParam) {
     jquery.ajax({
-      url: apiURI + '/search',
+      url: apiURI + '/searchLyric',
       type: 'GET',
       dataType: 'json',
       data: {'lyrics': searchParam},

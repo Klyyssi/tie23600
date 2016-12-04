@@ -21,7 +21,7 @@ Dokumentaatio: http://www.chartlyrics.com/api.aspx
 
 #### Query:
 ```
-GET /api/v1/search?by_lyrics=punk rocker
+GET /api/v1/searchLyric?lyrics=punk rocker
 ```
 
 #### Response
