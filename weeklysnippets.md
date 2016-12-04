@@ -10,3 +10,9 @@ Tein enimmäkseen frontendia, fiksailin vähän backendia ja kokeilin automaatti
 Swagger ei ollut minulle ennestään tuttu teknologia, joten siihen tutustuminen oli mielenkiintoista.
 Muut asiat olivatkin aika pitkälle tuttuja juttuja. Myöskään Travisiin tutustuminen ei ollut pahitteeksi,
 kun en aikaisemmin ollut konffaillut nimenomaan Travisia.
+
+## Sampo
+Tein pääosin backendiä. Keskityin työssä eniten kehittäjäkokemukseen, mikä opetti uutta 
+frontendien integroimisesta backendiin ja sovellusten paketoimisesta. Tämän osa-alueen 
+kehittäminen opetti myös lisää Javan build-systeemeistä. Travisiin tutustuminen oli uusi kokemus,
+mikä antoi lisää ymmärrystä erilaisista CI-työkaluista.
