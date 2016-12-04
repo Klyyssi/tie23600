@@ -1,8 +1,10 @@
 # TIE-23600 Harjoitustyö
 
+[![Build Status](https://travis-ci.org/Klyyssi/tie23600.svg?branch=master)](https://travis-ci.org/Klyyssi/tie23600)
+
 ## Kuvaus
 
-Harjoitustyönä luodaan REST-rajapinta, joka integroi kaksi ulkoista internetin yli toimivaa rajapintaa. 
+Harjoitustyönä luodaan REST-rajapinta, joka integroi kaksi ulkoista internetin yli toimivaa rajapintaa.
 Rajapinnoiksi on valittu Spotifyn Web API, ja ChartLyrics API.
 
 ### Rajapinta 1: Spotify Web API
@@ -14,7 +16,7 @@ Dokumentaatio: https://developer.spotify.com/web-api/
 ### Rajapinta 2: ChartLyrics API
 
 ChartLyricsin rajapinnasta haetaan kappaleeseen liittyvät lyriikat. ChartLyricsin rajapintaa voidaan käyttää myös
-etsimään kappaleita lyriikoiden perusteella. 
+etsimään kappaleita lyriikoiden perusteella.
 Dokumentaatio: http://www.chartlyrics.com/api.aspx
 
 ### Esimerkki kyselystä ja palautettavasta datasta
