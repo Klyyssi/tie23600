@@ -109,6 +109,7 @@ class SearchBar extends Component {
         <input id="artist-rad" type="radio" checked={!this.state.searchByLyrics} onChange={this.handleArtistChange} />
         <label htmlFor="artist-rad">By artist & song</label>
         {searchBar}
+		<a href="swagger-ui.html">API documentation</a>
       </div>
     );
   }
