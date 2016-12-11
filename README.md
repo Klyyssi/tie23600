@@ -75,4 +75,4 @@ Aseta seuraavat config-muuttujat
 
 ## Ryhmä
 Sampo Tolvanen <br />
-Markus Mulkahainen
+Markus Mulkahainen - mulkahai[ät]student.tut.fi
