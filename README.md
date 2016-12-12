@@ -75,5 +75,5 @@ Aseta seuraavat config-muuttujat
 | MAVEN_CUSTOM_OPTS | -Pprod -DskipTests   |
 
 ## Ryhmä
-Sampo Tolvanen <br />
+Sampo Tolvanen - sampo.tolvanen[ät]student.tut.fi<br />
 Markus Mulkahainen - mulkahai[ät]student.tut.fi
