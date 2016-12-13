@@ -103,7 +103,7 @@ class SearchBar extends Component {
 
     return (
       <div className="form-group">
-        <label>Search</label><br />
+        <label>Etsi</label><br />
         <input id="lyrics-rad" type="radio" checked={this.state.searchByLyrics} onChange={this.handleLyricsChange} />
         <label htmlFor="lyrics-rad">By lyrics</label>
         <input id="artist-rad" type="radio" checked={!this.state.searchByLyrics} onChange={this.handleArtistChange} />
